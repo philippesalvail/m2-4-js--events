@@ -9,7 +9,18 @@
 // - Target the <body>
 // - setTimout is your friend.
 // - You'll need a variable to keep track of whether the user has won or lost
+document.body.style.height = "100vh";
+let result = true;
 
+function hurryUp() {
+  result = false;
+}
+setTimeout(hurryUp, 1000);
+
+document.body.addEventListener("click", function (e) {
+  if (result) document.querySelector("#result").innerText = "You won!!!";
+  else document.querySelector("#result").innerText = "You Lost!!!";
+});
 // OPTIONAL
 // Feel free to add some CSS to this once you're done
 // --------------------------------------------------

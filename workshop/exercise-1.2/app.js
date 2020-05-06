@@ -4,6 +4,44 @@
 // Similar to the last exercise, write an app that gives the user
 // a random amount of time (between 3 and 5 seconds) to click anywhere on the
 // screen.
+document.body.style.height = "100vh";
+let timeStarted = Math.ceil(Math.random() * 3) + 2;
+let onTime = true;
+function timesUp() {
+  onTime = false;
+}
+document.querySelector("#time").innerText = timeStarted;
+let clock = setTimeout(timesUp, timeStarted + "000");
+let myTime = setInterval(myTimer, 1000);
+function myTimer() {
+  if (timeStarted === 0) {
+    clearInterval(myTime);
+    document.querySelector("#time").innerText = timeStarted;
+  } else {
+    timeStarted -= 1;
+    document.querySelector("#time").innerText = timeStarted;
+    console.log("timeLeft: ", timeStarted);
+  }
+}
+document.body.addEventListener("click", function (e) {
+  let xPosition = e.pageX + "px";
+  let yPosition = e.pageY + "px";
+  let spanClick = document.createElement("span");
+  spanClick.setAttribute(
+    "style",
+    "position: absolute; " + "top: " + yPosition + "; left: " + xPosition + ";"
+  );
+  spanClick.innerText = "You have clicked!";
+  document.body.append(spanClick);
+  clearInterval(myTime);
+  clearTimeout(clock);
+  let result = document.querySelector("#result");
+  if (onTime) {
+    result.innerText = "You have won!";
+  } else {
+    result.innerText = "You have lost!";
+  }
+});
 //
 // But this time, let's let the user know how much time they have to actually
 // 'click'. If they click inside of the required time, you should tell them

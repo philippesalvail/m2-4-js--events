@@ -1,13 +1,14 @@
 // Exercise 1.0
 // ------------
-// Write an app that registers a click anywhere on the screen.
-// Once the user clicks, add some text to the page.
-
-// Hints:
-// - Target the <body>
-// - By default, the <body> will be 0px tall. You can add a style in the
-//   `<style>` tags to fill the viewport height.
-
-// OPTIONAL
-// Feel free to add some CSS to this once you're done
-// --------------------------------------------------
+document.body.style.height = "100vh";
+document.body.addEventListener("click", function (e) {
+  var pageX = e.pageX + "px";
+  var pageY = e.pageY + "px";
+  var clickSpan = document.createElement("span");
+  clickSpan.setAttribute(
+    "style",
+    "position: absolute;" + "top: " + pageY + ";" + "left: " + pageX + ";"
+  );
+  clickSpan.innerText = "You clicked here!";
+  document.body.append(clickSpan);
+});
