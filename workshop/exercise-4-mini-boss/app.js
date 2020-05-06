@@ -70,7 +70,7 @@ btnStart.setAttribute(
 );
 btnStart.innerText = "Begin";
 let btnCount = Math.ceil(Math.random() * 20);
-let timerStart = Math.ceil(Math.random() * 10);
+let timerStart = Math.ceil(Math.random() * 10) + 5;
 btnStart.addEventListener("click", function () {
   this.style.display = "none";
   document.querySelector("#btnScore").innerText = btnCount;
